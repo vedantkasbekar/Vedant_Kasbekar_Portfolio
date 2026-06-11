@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.name }} | AI Developer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+    <div class="doodle-layer">
+        <!-- Row 1 — top strip -->
+        <i class="fa-brands fa-python     floating-icon fi-lg fi-col-blue"   style="top:4%;  left:6%;   animation-duration:18s;"></i>
+        <i class="fa-solid  fa-brain      floating-icon fi-col-purple"       style="top:7%;  left:22%;  animation-duration:24s; animation-delay:3s;"></i>
+        <i class="fa-brands fa-docker     floating-icon fi-col-blue"         style="top:3%;  left:38%;  animation-duration:20s; animation-delay:1s;"></i>
+        <i class="fa-solid  fa-microchip  floating-icon fi-lg"               style="top:5%;  left:55%;  animation-duration:30s; animation-delay:5s;"></i>
+        <i class="fa-brands fa-js         floating-icon fi-col-green"        style="top:6%;  left:70%;  animation-duration:22s; animation-delay:2s;"></i>
+        <i class="fa-brands fa-react      floating-icon fi-col-blue"         style="top:4%;  right:8%;  animation-duration:26s; animation-delay:4s;"></i>
+
+        <!-- Row 2 -->
+        <i class="fa-solid  fa-robot      floating-icon fi-lg fi-col-purple" style="top:18%; left:3%;   animation-duration:25s; animation-delay:6s;"></i>
+        <i class="fa-solid  fa-terminal   floating-icon fi-sm fi-col-green"  style="top:20%; left:16%;  animation-duration:17s; animation-delay:1s;"></i>
+        <i class="fa-brands fa-github     floating-icon"                     style="top:15%; left:32%;  animation-duration:23s; animation-delay:8s;"></i>
+        <i class="fa-solid  fa-database   floating-icon fi-col-blue"         style="top:22%; left:48%;  animation-duration:19s; animation-delay:3s;"></i>
+        <i class="fa-brands fa-aws        floating-icon fi-lg"               style="top:16%; left:63%;  animation-duration:28s; animation-delay:5s;"></i>
+        <i class="fa-solid  fa-server     floating-icon fi-col-purple"       style="top:19%; right:6%;  animation-duration:21s; animation-delay:2s;"></i>
+
+        <!-- Row 3 — middle -->
+        <i class="fa-solid  fa-code       floating-icon fi-lg fi-col-green"  style="top:36%; left:8%;   animation-duration:22s; animation-delay:4s;  animation-name:floatDrift;"></i>
+        <i class="fa-brands fa-python     floating-icon fi-sm"               style="top:40%; left:24%;  animation-duration:16s; animation-delay:7s;"></i>
+        <i class="fa-solid  fa-network-wired floating-icon fi-col-blue"      style="top:33%; left:42%;  animation-duration:27s; animation-delay:2s;"></i>
+        <i class="fa-brands fa-linux      floating-icon fi-col-purple"       style="top:38%; left:58%;  animation-duration:20s; animation-delay:9s;"></i>
+        <i class="fa-solid  fa-cubes      floating-icon fi-sm fi-col-green"  style="top:35%; right:12%; animation-duration:24s; animation-delay:1s;"></i>
+        <i class="fa-brands fa-git-alt    floating-icon fi-lg"               style="top:42%; right:3%;  animation-duration:18s; animation-delay:6s;  animation-name:floatSway;"></i>
+
+        <!-- Row 4 -->
+        <i class="fa-solid  fa-flask      floating-icon fi-col-blue"         style="top:54%; left:5%;   animation-duration:23s; animation-delay:3s;"></i>
+        <i class="fa-brands fa-docker     floating-icon fi-sm fi-col-green"  style="top:58%; left:19%;  animation-duration:19s; animation-delay:5s;  animation-name:floatSway;"></i>
+        <i class="fa-solid  fa-microchip  floating-icon fi-col-purple"       style="top:52%; left:36%;  animation-duration:26s; animation-delay:1s;"></i>
+        <i class="fa-solid  fa-diagram-project floating-icon fi-sm"          style="top:57%; left:52%;  animation-duration:21s; animation-delay:8s;"></i>
+        <i class="fa-brands fa-js         floating-icon fi-lg"               style="top:55%; left:67%;  animation-duration:17s; animation-delay:4s;  animation-name:floatDrift;"></i>
+        <i class="fa-brands fa-react      floating-icon fi-sm fi-col-blue"   style="top:53%; right:9%;  animation-duration:29s; animation-delay:2s;"></i>
+
+        <!-- Row 5 -->
+        <i class="fa-brands fa-github     floating-icon fi-lg fi-col-purple" style="top:70%; left:2%;   animation-duration:20s; animation-delay:6s;"></i>
+        <i class="fa-solid  fa-brain      floating-icon fi-sm"               style="top:72%; left:17%;  animation-duration:25s; animation-delay:3s;  animation-name:floatSway;"></i>
+        <i class="fa-solid  fa-server     floating-icon fi-col-green"        style="top:68%; left:34%;  animation-duration:18s; animation-delay:7s;"></i>
+        <i class="fa-brands fa-aws        floating-icon fi-sm fi-col-blue"   style="top:74%; left:50%;  animation-duration:22s; animation-delay:1s;"></i>
+        <i class="fa-solid  fa-terminal   floating-icon fi-lg"               style="top:69%; left:65%;  animation-duration:27s; animation-delay:4s;"></i>
+        <i class="fa-solid  fa-robot      floating-icon fi-col-purple"       style="top:71%; right:7%;  animation-duration:16s; animation-delay:9s;  animation-name:floatDrift;"></i>
+
+        <!-- Row 6 — bottom strip -->
+        <i class="fa-solid  fa-code       floating-icon fi-sm fi-col-blue"   style="bottom:6%; left:8%;  animation-duration:24s; animation-delay:2s;"></i>
+        <i class="fa-brands fa-linux      floating-icon fi-lg"               style="bottom:4%; left:23%; animation-duration:19s; animation-delay:5s;"></i>
+        <i class="fa-brands fa-git-alt    floating-icon fi-col-green"        style="bottom:7%; left:40%; animation-duration:21s; animation-delay:3s;"></i>
+        <i class="fa-solid  fa-network-wired floating-icon fi-sm fi-col-purple" style="bottom:5%; left:57%; animation-duration:28s; animation-delay:6s; animation-name:floatSway;"></i>
+        <i class="fa-solid  fa-flask      floating-icon fi-lg fi-col-blue"   style="bottom:6%; left:73%; animation-duration:23s; animation-delay:1s;"></i>
+        <i class="fa-solid  fa-cubes      floating-icon"                     style="bottom:4%; right:5%; animation-duration:17s; animation-delay:4s;"></i>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <nav id="mainNav">
+            <div class="nav-logo">
+                <span class="glitch" data-text="Vedant Kasbekar">Vedant Kasbekar</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="/blogs" class="nav-blogs-link"><i class="fa-solid fa-pen-nib"></i> Blogs</a></li>
+                <li><button id="contactBtn" class="cta-button">Contact Me</button></li>
+                <li><button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode"><i class="fa-solid fa-moon"></i></button></li>
+            </ul>
+        </nav>
+
+        <header class="header-grid header-fullwidth">
+            <div class="header-content">
+                <div class="profile-row">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                         alt="Vedant Kasbekar"
+                         class="profile-photo"
+                         onerror="this.style.display='none'">
+                </div>
+                <h1 class="name-title">{{ data.name }}</h1>
+                <h2 class="subtitle">AI Developer // <span class="highlight">Machine Learning</span></h2>
+                <p class="header-summary">{{ data.profile_summary }}</p>
+
+                <div class="social-links">
+                    <a href="{{ data.github }}" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="{{ data.linkedin }}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:{{ data.email }}"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <div class="hero-actions">
+                    <a href="{{ url_for('static', filename='resume/Vedant_Kasbekar_Resume.pdf') }}"
+                       download="Vedant_Kasbekar_Resume.pdf"
+                       class="cv-download-btn">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download CV</span>
+                        <span class="cv-btn-glow"></span>
+                    </a>
+                    <a href="/blogs" class="hero-blog-btn">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        <span>Blogs & Conferences</span>
+                        <span class="hero-blog-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="about" class="content-section">
+                <h2><span class="hash">//</span> Who_I_Am</h2>
+                <div class="about-container">
+                    <div class="about-photo-wrap">
+                        <div class="about-photo-frame">
+                            <img src="{{ url_for('static', filename='images/profile.jpg') }}"
+                                 alt="Vedant Kasbekar"
+                                 class="about-photo"
+                                 onerror="this.parentElement.innerHTML='<div class=\'about-photo-placeholder\'><i class=\'fa-solid fa-user\'></i></div>'">
+                            <div class="about-photo-border"></div>
+                        </div>
+                        <div class="about-photo-tags">
+                            <span>🧠 LLM Engineer</span>
+                            <span>🐍 Python</span>
+                            <span>🤖 GenAI</span>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <p class="about-intro">Hey, I'm <strong>Vedant</strong> — an AI Developer from Chhatrapati Sambhajinagar, India.</p>
+                        <p>I spend my days building systems that <strong>think, retrieve, and generate</strong> — from LLM-powered SaaS products to RAG pipelines and local AI models that run with zero cloud dependency.</p>
+                        <p>Currently at <strong>Eelanos</strong>, I'm wiring AI into multi-portal business systems — recruitment, course platforms, financial data extraction, and medical summarisation using Ollama.</p>
+                        <p>When I'm not building, I'm on stage talking about it — or in a hackathon trying to ship something in 36 hours.</p>
+                        <div class="about-quick-facts">
+                            <div class="fact"><i class="fa-solid fa-location-dot"></i> Chhatrapati Sambhajinagar, India</div>
+                            <div class="fact"><i class="fa-solid fa-briefcase"></i> AI Developer @ Eelanos</div>
+                            <div class="fact"><i class="fa-solid fa-graduation-cap"></i> B.Tech AI & ML, 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section id="experience" class="content-section">
+                <h2><span class="hash">//</span> Work_Experience</h2>
+                {% for job in data.experience %}
+                <div class="exp-card">
+
+                    <!-- Header (click to toggle) -->
+                    <div class="exp-header" onclick="toggleExp(this)">
+                        <div class="exp-header-left">
+                            <div class="exp-company-logo">💼</div>
+                            <div>
+                                <h3 class="exp-role">{{ job.role }} <span class="exp-at">@</span> <span class="exp-company">{{ job.company }}</span></h3>
+                                <span class="exp-duration">{{ job.duration }}</span>
+                            </div>
+                        </div>
+                        <div class="exp-header-right">
+                            <span class="exp-projects-count">{{ job.projects | length }} Projects</span>
+                            <i class="fa-solid fa-chevron-down exp-chevron"></i>
+                        </div>
+                    </div>
+
+                    <!-- Highlights — always visible -->
+                    <div class="exp-highlights">
+                        {% for h in job.highlights %}
+                        <div class="exp-highlight-chip">
+                            <span class="exp-highlight-icon">{{ h.icon }}</span>
+                            <span>{{ h.text }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Dropdown body -->
+                    <div class="exp-body">
+                        <div class="exp-inner-wrap">
+                            <p class="exp-track-label"><i class="fa-solid fa-layer-group"></i> Projects Delivered</p>
+                            <div class="exp-proj-grid">
+                                {% for proj in job.projects %}
+                                <div class="exp-proj-card">
+                                    <div class="exp-proj-card-top">
+                                        <span class="exp-proj-type-pill">{{ proj.type }}</span>
+                                    </div>
+                                    <h4 class="exp-proj-title">{{ proj.title }}</h4>
+                                    <p class="exp-proj-desc">{{ proj.desc }}</p>
+                                    <div class="exp-tech-row">
+                                        {% for t in proj.tech %}
+                                        <span class="exp-tech-tag">{{ t }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects" class="content-section">
+                <h2><span class="hash">//</span> My_Projects</h2>
+                <div class="projects-grid">
+                    {% for project in data.projects %}
+                    <div class="project-card">
+                        <div class="card-border-top"></div>
+                        <div class="project-header">
+                            <div class="project-type"><i class="fa-solid fa-microchip"></i> {{ project.type }}</div>
+                            {% if project.github_link != "#" %}
+                            <a href="{{ project.github_link }}" target="_blank" class="git-icon"><i class="fa-brands fa-github"></i></a>
+                            {% endif %}
+                        </div>
+                        <h3>{{ project.title }}</h3>
+                        <p class="project-desc">{{ project.description }}</p>
+                        <div class="tech-stack">
+                            {% for tech in project.tech_stack %}
+                                <span><i class="fa-solid fa-code"></i> {{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- SPEAKER SECTION -->
+            <section id="speaker" class="content-section speaker-section">
+                <div class="section-badge speaker-badge"><i class="fa-solid fa-microphone-lines"></i> Public Speaking</div>
+                <h2 class="section-title-themed">On Stage</h2>
+                <div class="speaker-card">
+                    <div class="speaker-bg-deco">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </div>
+                    <div class="speaker-left">
+                        <div class="speaker-meta">
+                            <span class="speaker-tag">DevConf 2026</span>
+                            <span class="speaker-tag">MIT World Peace University</span>
+                        </div>
+                        <h3>Prompt Engineering 2.0</h3>
+                        <p>Delivered a technical session to <strong>200+ developers and students</strong> covering advanced prompting strategies, chain-of-thought reasoning, and real-world LLM application design.</p>
+                        <div class="speaker-stats">
+                            <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Attendees</span></div>
+                            <div class="stat"><span class="stat-num">2026</span><span class="stat-label">Year</span></div>
+                            <div class="stat"><span class="stat-num">LLMs</span><span class="stat-label">Topic</span></div>
+                        </div>
+                    </div>
+                    <div class="speaker-right">
+                        <div class="gallery-thumb-wrap open-gallery speaker-thumb"
+                             data-photos='["devconf1.jpg", "devconf2.jpg", "devconf3.jpg", "devconf4.jpg"]'
+                             data-title='Speaker – DevConf 2026'>
+                            <img src="{{ url_for('static', filename='images/devconf1.jpg') }}"
+                                 class="gallery-thumb"
+                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="thumb-fallback"><i class="fa-solid fa-image"></i></div>
+                            <div class="photo-count-badge"><i class="fa-solid fa-images"></i> 4</div>
+                            <div class="thumb-overlay"><i class="fa-solid fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HACKATHON SECTION -->
+            <section id="hackathon" class="content-section hackathon-section">
+                <div class="section-badge hackathon-badge"><i class="fa-solid fa-trophy"></i> Competitive Hacking</div>
+                <h2 class="section-title-themed">Battle-Tested</h2>
+                <div class="hackathon-card">
+                    <div class="hackathon-bg-deco">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div class="hackathon-rank-display">
+                        <span class="rank-number">#12</span>
+                        <span class="rank-label">out of 250+ teams</span>
+                    </div>
+                    <div class="hackathon-details">
+                        <div class="hack-meta">
+                            <span class="hackathon-tag">SUNHACK</span>
+                            <span class="hackathon-tag">April 2024</span>
+                            <span class="hackathon-tag">36 Hours</span>
+                        </div>
+                        <h3>SUNHACK Hackathon</h3>
+                        <p>Secured <strong>12th rank out of 250+ teams</strong> building an AI solution in a 36-hour non-stop coding marathon. Competed against top engineering teams.</p>
+                    </div>
+                    <div class="hack-photo">
+                        <div class="gallery-thumb-wrap open-gallery hackathon-thumb"
+                             data-photos='["sunhack1.jpg"]'
+                             data-title='SUNHACK Hackathon – Rank 12'>
+                            <img src="{{ url_for('static', filename='images/sunhack1.jpg') }}"
+                                 class="gallery-thumb"
+                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="thumb-fallback"><i class="fa-solid fa-image"></i></div>
+                            <div class="photo-count-badge"><i class="fa-solid fa-images"></i> 1</div>
+                            <div class="thumb-overlay"><i class="fa-solid fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MUN SECTION -->
+            <section id="mun" class="content-section mun-section">
+                <div class="section-badge mun-badge"><i class="fa-solid fa-earth-americas"></i> Diplomacy</div>
+                <h2 class="section-title-themed">On the World Stage</h2>
+                <div class="mun-card">
+                    <div class="mun-bg-deco">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+                    <div class="mun-flag-col">
+                        <div class="mun-country">🇸🇦</div>
+                        <span class="mun-country-name">Saudi Arabia</span>
+                        <span class="mun-committee">DISEC Committee</span>
+                    </div>
+                    <div class="mun-details">
+                        <div class="mun-meta">
+                            <span class="mun-tag">Model United Nations</span>
+                            <span class="mun-tag">April 2024</span>
+                        </div>
+                        <h3>Delegate of Saudi Arabia</h3>
+                        <p>Represented the Kingdom of Saudi Arabia in the <strong>DISEC committee</strong>, addressing global disarmament and security issues through research, negotiation, and public speaking.</p>
+                    </div>
+                    <div class="mun-photo">
+                        <div class="gallery-thumb-wrap open-gallery mun-thumb"
+                             data-photos='["mun1.jpg", "mun2.jpg", "mun3.jpg"]'
+                             data-title='MUN – Delegate of Saudi Arabia'>
+                            <img src="{{ url_for('static', filename='images/mun1.jpg') }}"
+                                 class="gallery-thumb"
+                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                            <div class="thumb-fallback"><i class="fa-solid fa-image"></i></div>
+                            <div class="photo-count-badge"><i class="fa-solid fa-images"></i> 3</div>
+                            <div class="thumb-overlay"><i class="fa-solid fa-expand"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS — PERIODIC TABLE -->
+            <section id="skills" class="content-section">
+                <h2><span class="hash">//</span> Skill_Network</h2>
+                <div class="pt-outer" id="ptOuter">
+
+                    <!-- Floating featured card -->
+                    <div class="pt-featured" id="ptFeatured">
+                        <div class="pt-featured-inner">
+                            <img id="ptfImg" class="pt-featured-img" src="" alt="">
+                            <span id="ptfEmoji" class="pt-featured-emoji" style="display:none"></span>
+                            <div class="pt-featured-info">
+                                <span id="ptfSym" class="pt-featured-sym">Py</span>
+                                <span id="ptfName" class="pt-featured-name">Python</span>
+                                <span id="ptfCat" class="pt-featured-cat">Languages</span>
+                            </div>
+                        </div>
+                        <p class="pt-featured-sub">The Periodic Table of Skills</p>
+                    </div>
+
+                    <!-- Board -->
+                    <div class="pt-board" id="ptBoard"></div>
+
+                    <!-- Legend -->
+                    <div class="pt-legend-bar">
+                        <span class="ptl-item" data-g="lang"><span class="ptl-dot" style="background:#00f3ff"></span>Languages</span>
+                        <span class="ptl-item" data-g="llm"><span class="ptl-dot" style="background:#d966ff"></span>LLMs & GenAI</span>
+                        <span class="ptl-item" data-g="ai"><span class="ptl-dot" style="background:#0aff60"></span>AI / ML</span>
+                        <span class="ptl-item" data-g="backend"><span class="ptl-dot" style="background:#ffd700"></span>Backend & Tools</span>
+                        <span class="ptl-item" data-g="db"><span class="ptl-dot" style="background:#ff6b6b"></span>Databases</span>
+                        <span class="ptl-item" data-g="data"><span class="ptl-dot" style="background:#ff9f43"></span>Data & Analytics</span>
+                        <span class="ptl-hint">Click any skill to pin · Hover to explore</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section id="education" class="content-section">
+                <h2><span class="hash">//</span> Education</h2>
+                <div class="education-grid">
+                    {% for edu in data.education %}
+                    <div class="edu-card">
+                        <div class="edu-icon-wrap">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="edu-details">
+                            <span class="edu-years">{{ edu.years }}</span>
+                            <h3 class="edu-degree">{{ edu.degree }}</h3>
+                            <p class="edu-institution">{{ edu.institution }}</p>
+                        </div>
+                        <div class="edu-glow"></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>Designed by Vedant Kasbekar | AI Developer</p>
+        </footer>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal-redesign">
+            <button class="close-modal" id="closeContactModal" aria-label="Close">&times;</button>
+
+            <!-- Left panel -->
+            <div class="cm-left">
+                <div class="cm-left-badge"><i class="fa-solid fa-satellite-dish"></i> Open to Work</div>
+                <h3 class="cm-title">Let's Build<br>Something <span class="cm-accent">Together</span></h3>
+                <p class="cm-sub">Have a project idea, job opportunity, or just want to connect? Drop a message — I respond within 24 hours.</p>
+                <div class="cm-contact-info">
+                    <div class="cm-info-row"><i class="fa-solid fa-envelope"></i> vedantkasbekar15@gmail.com</div>
+                    <div class="cm-info-row"><i class="fa-solid fa-location-dot"></i> Chhatrapati Sambhajinagar, India</div>
+                    <div class="cm-info-row"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/vedant-kasbekar</div>
+                </div>
+                <div class="cm-socials">
+                    <a href="https://github.com/vedantkasbekar" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/vedant-kasbekar" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:vedantkasbekar15@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <!-- Right panel — form -->
+            <div class="cm-right">
+                <div class="cm-form-header">
+                    <span class="cm-form-title">Send a Message</span>
+                    <span class="cm-status-dot"></span>
+                </div>
+
+                <!-- Success state -->
+                <div class="cm-success" id="cmSuccess">
+                    <div class="cm-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h4>Message Sent!</h4>
+                    <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+                    <button class="cm-send-another" onclick="resetContactForm()">Send Another</button>
+                </div>
+
+                <!-- Error state -->
+                <div class="cm-error-banner" id="cmError" style="display:none">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="cmErrorText">Something went wrong. Please try again.</span>
+                </div>
+
+                <form id="contactForm" onsubmit="handleForm(event)" autocomplete="off">
+                    <div class="cm-form-row">
+                        <div class="cm-field">
+                            <label>Your Name <span class="req">*</span></label>
+                            <input type="text" name="name" id="cm_name" required placeholder="Vedant Kasbekar">
+                        </div>
+                        <div class="cm-field">
+                            <label>Your Email <span class="req">*</span></label>
+                            <input type="email" name="email" id="cm_email" required placeholder="you@email.com">
+                        </div>
+                    </div>
+                    <div class="cm-field">
+                        <label>Phone <span class="cm-optional">(optional)</span></label>
+                        <input type="tel" name="phone" id="cm_phone" placeholder="+91 00000 00000">
+                    </div>
+                    <div class="cm-field">
+                        <label>Subject <span class="req">*</span></label>
+                        <input type="text" name="subject" id="cm_subject" required placeholder="Project idea / Job opportunity / Collaboration">
+                    </div>
+                    <div class="cm-field">
+                        <label>Message <span class="req">*</span></label>
+                        <textarea name="message" id="cm_message" required placeholder="Tell me about your project or what you have in mind..." rows="4"></textarea>
+                        <span class="cm-char-count" id="cmCharCount">0 / 500</span>
+                    </div>
+                    <button type="submit" class="cm-submit-btn" id="cmSubmitBtn">
+                        <span class="cm-btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+                        <span class="cm-btn-loading" style="display:none"><i class="fa-solid fa-spinner fa-spin"></i> Sending...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY MODAL -->
+    <div id="galleryModal" class="modal gallery-modal">
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-header">
+                <h3 id="galleryTitle"></h3>
+                <div class="gallery-header-right">
+                    <span id="galleryCounter" class="gallery-counter"></span>
+                    <span class="close-modal" id="closeGallery">&times;</span>
+                </div>
+            </div>
+            <div class="gallery-main-view">
+                <button class="gallery-nav prev" id="galleryPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="gallery-img-wrap">
+                    <img id="galleryMainImg" src="" alt="">
+                </div>
+                <button class="gallery-nav next" id="galleryNext"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="gallery-strip" id="galleryStrip"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Particles Config
+        particlesJS.load('particles-js', "{{ url_for('static', filename='particles.json') }}");
+
+        // Scroll Reveal
+        const sr = ScrollReveal({ distance: '30px', duration: 1000, reset: false });
+        sr.reveal('.header-content', { origin: 'left' });
+        sr.reveal('.hero-visual', { origin: 'right', delay: 200 });
+        sr.reveal('.project-card', { interval: 200 });
+        sr.reveal('.timeline-item', { interval: 150, origin: 'bottom' });
+        sr.reveal('.rag-container', { origin: 'bottom' });
+
+        // ── Gallery Logic ──
+        const galleryModal   = document.getElementById("galleryModal");
+        const galleryTitle   = document.getElementById("galleryTitle");
+        const galleryCounter = document.getElementById("galleryCounter");
+        const galleryMainImg = document.getElementById("galleryMainImg");
+        const galleryStrip   = document.getElementById("galleryStrip");
+        const closeGallery   = document.getElementById("closeGallery");
+        const galleryPrev    = document.getElementById("galleryPrev");
+        const galleryNext    = document.getElementById("galleryNext");
+
+        let galleryPhotos = [];
+        let galleryIndex  = 0;
+
+        // Use event delegation — attach ONE listener to document
+        document.addEventListener("click", function(e) {
+            const thumb = e.target.closest(".open-gallery");
+            if (!thumb) return;
+            const photos = JSON.parse(thumb.getAttribute("data-photos"));
+            const title  = thumb.getAttribute("data-title");
+            galleryPhotos = photos;
+            galleryIndex  = 0;
+            galleryTitle.textContent = title;
+            galleryModal.style.display = "flex";
+            buildStrip();
+            showPhoto(0);
+        });
+
+        function buildStrip() {
+            galleryStrip.innerHTML = "";
+            galleryPhotos.forEach((photo, i) => {
+                const img = document.createElement("img");
+                img.src = "/static/images/" + photo;
+                img.alt = "Photo " + (i + 1);
+                img.className = "strip-thumb" + (i === 0 ? " active" : "");
+                img.onclick = (e) => { e.stopPropagation(); showPhoto(i); };
+                galleryStrip.appendChild(img);
+            });
+        }
+
+        function showPhoto(index) {
+            galleryIndex = index;
+            galleryMainImg.src = "/static/images/" + galleryPhotos[index];
+            galleryCounter.textContent = (index + 1) + " / " + galleryPhotos.length;
+            document.querySelectorAll(".strip-thumb").forEach((t, i) => {
+                t.classList.toggle("active", i === index);
+            });
+            galleryPrev.style.opacity = index === 0 ? "0.3" : "1";
+            galleryNext.style.opacity = index === galleryPhotos.length - 1 ? "0.3" : "1";
+        }
+
+        galleryPrev.onclick  = (e) => { e.stopPropagation(); if (galleryIndex > 0) showPhoto(galleryIndex - 1); };
+        galleryNext.onclick  = (e) => { e.stopPropagation(); if (galleryIndex < galleryPhotos.length - 1) showPhoto(galleryIndex + 1); };
+        closeGallery.onclick = (e) => { e.stopPropagation(); galleryModal.style.display = "none"; };
+
+        galleryModal.addEventListener("click", (e) => {
+            if (e.target === galleryModal) galleryModal.style.display = "none";
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (galleryModal.style.display !== "flex") return;
+            if (e.key === "ArrowLeft")  { if (galleryIndex > 0) showPhoto(galleryIndex - 1); }
+            if (e.key === "ArrowRight") { if (galleryIndex < galleryPhotos.length - 1) showPhoto(galleryIndex + 1); }
+            if (e.key === "Escape")     galleryModal.style.display = "none";
+        });
+
+        // ── Sticky nav ──
+        const mainNav    = document.getElementById("mainNav");
+        const heroHeader = document.querySelector(".header-grid");
+        window.addEventListener("scroll", () => {
+            const threshold = heroHeader.offsetHeight - 80;
+            if (window.scrollY > threshold) {
+                mainNav.classList.add("nav-scrolled");
+            } else {
+                mainNav.classList.remove("nav-scrolled");
+            }
+        });
+
+        // ── Experience dropdown ──
+        function toggleExp(header) {
+            const card = header.parentElement;
+            card.classList.toggle("open");
+        }
+
+        // ── Periodic Table of Skills ──
+        (function buildPT() {
+            // Colors per group
+            const C = {
+                lang:'#00f3ff', llm:'#d966ff', ai:'#0aff60',
+                backend:'#ffd700', db:'#ff6b6b', data:'#ff9f43'
+            };
+            const LABELS = {
+                lang:'Languages', llm:'LLMs & GenAI', ai:'AI / ML',
+                backend:'Backend & Tools', db:'Databases', data:'Data & Analytics'
+            };
+
+            // ── Precise grid placement (col, row) matching image exactly ──
+            // Grid is 15 columns wide, rows 1-8
+            // Category headers at row 0
+            // Python hero: col 1, rows 1-2 (large)
+            // Bottom strip: row 6-7
+
+            const ELEMENTS = [
+                // ── LANGUAGES (col 1) ──
+                { n:1,  sym:'Py',   name:'Python',         g:'lang',    col:1, row:2, rowspan:2, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', hero:true },
+                { n:3,  sym:'SQL',  name:'SQL',            g:'lang',    col:1, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+                { n:11, sym:'JS',   name:'JavaScript',     g:'lang',    col:1, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                { n:19, sym:'HTML', name:'HTML / CSS',     g:'lang',    col:1, row:6, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+
+                // ── LLMs & GenAI (cols 3-4) ──
+                { n:4,  sym:'LC',   name:'LangChain',      g:'llm',     col:3, row:4, logo:'https://avatars.githubusercontent.com/u/126733545?s=48' },
+                { n:5,  sym:'LS',   name:'LangSmith',      g:'llm',     col:4, row:4, logo:'https://avatars.githubusercontent.com/u/126733545?s=48' },
+                { n:6,  sym:'LG',   name:'LangGraph',      g:'llm',     col:3, row:5, logo:'https://avatars.githubusercontent.com/u/126733545?s=48' },
+                { n:7,  sym:'LI',   name:'LlamaIndex',     g:'llm',     col:4, row:5, logo:'https://avatars.githubusercontent.com/u/130722866?s=48' },
+                { n:12, sym:'OA',   name:'OpenAI API',     g:'llm',     col:3, row:6, logo:'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
+                { n:13, sym:'GA',   name:'Gemini API',     g:'llm',     col:4, row:6, emoji:'✨' },
+                { n:14, sym:'HF',   name:'Hugging Face',   g:'llm',     col:5, row:6, logo:'https://huggingface.co/front/assets/huggingface_logo-noborder.svg' },
+
+                // ── AI / ML (col 6, rows 4-6) ──
+                { n:8,  sym:'ML',   name:'Machine Learning',g:'ai',     col:6, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
+                { n:9,  sym:'NLP',  name:'NLP',            g:'ai',      col:7, row:4, emoji:'📝' },
+                { n:10, sym:'TL',   name:'TensorFlow',     g:'ai',      col:6, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
+                { n:15, sym:'CV',   name:'Computer Vision', g:'ai',      col:6, row:6, emoji:'👁️' },
+
+                // ── Backend & Tools (cols 9-11) ──
+                { n:16, sym:'FL',   name:'Flask',          g:'backend', col:9,  row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' },
+                { n:17, sym:'FA',   name:'FastAPI',        g:'backend', col:10, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
+                { n:18, sym:'ST',   name:'Streamlit',      g:'backend', col:11, row:4, logo:'https://streamlit.io/images/brand/streamlit-mark-color.svg' },
+                { n:26, sym:'DC',   name:'Docker',         g:'backend', col:9,  row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+                { n:27, sym:'GT',   name:'Git',            g:'backend', col:10, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                { n:28, sym:'JG',   name:'Jinja2',         g:'backend', col:11, row:5, emoji:'🧩' },
+                { n:29, sym:'BT',   name:'BeautifulSoup',  g:'backend', col:9,  row:6, emoji:'🍜' },
+                { n:30, sym:'OP',   name:'OpenPyXL',       g:'backend', col:10, row:6, emoji:'📗' },
+                { n:31, sym:'PL',   name:'PDFplumber',     g:'backend', col:11, row:6, emoji:'📄' },
+                { n:32, sym:'JT',   name:'JWT',            g:'backend', col:9,  row:7, emoji:'🔑' },
+                { n:33, sym:'RL',   name:'ReportLab',      g:'backend', col:10, row:7, emoji:'📋' },
+
+                // ── Databases (col 13) ──
+                { n:34, sym:'MY',   name:'MySQL',          g:'db',      col:13, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+                { n:35, sym:'PG',   name:'PostgreSQL',     g:'db',      col:13, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+                { n:36, sym:'SL',   name:'SQLite',         g:'db',      col:14, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg' },
+                { n:37, sym:'SO',   name:'SQLAlchemy',     g:'db',      col:13, row:6, emoji:'⚗️' },
+                { n:38, sym:'CR',   name:'ChromaDB',       g:'db',      col:13, row:7, emoji:'🔵' },
+                { n:39, sym:'FA',   name:'FAISS',          g:'db',      col:13, row:8, emoji:'🔍' },
+                { n:40, sym:'VC',   name:'Vector DB',      g:'db',      col:13, row:9, emoji:'🧬' },
+
+                // ── Data & Analytics (col 15) ──
+                { n:41, sym:'PD',   name:'Pandas',         g:'data',    col:15, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg' },
+                { n:42, sym:'NP',   name:'NumPy',          g:'data',    col:15, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg' },
+                { n:43, sym:'PB',   name:'Power BI',       g:'data',    col:15, row:6, logo:'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg' },
+                { n:44, sym:'MB',   name:'Matplotlib',     g:'data',    col:15, row:7, emoji:'📉' },
+
+                // ── Bottom strip (LLM extras, row 8) ──
+                { n:20, sym:'OL',   name:'Ollama',         g:'llm',     col:1,  row:8, logo:'https://ollama.com/public/ollama.png' },
+                { n:21, sym:'RAG',  name:'RAG',            g:'llm',     col:2,  row:8, emoji:'📚' },
+                { n:22, sym:'AA',   name:'Agentic AI',     g:'llm',     col:3,  row:8, emoji:'🤖' },
+                { n:23, sym:'AG',   name:'AI Agents',      g:'llm',     col:4,  row:8, emoji:'🕵️' },
+                { n:24, sym:'MA',   name:'Multi-Agent Sys', g:'llm',     col:5,  row:8, emoji:'🔀' },
+                { n:25, sym:'PE',   name:'Prompt Eng.',     g:'llm',     col:6,  row:8, emoji:'✍️' },
+            ];
+
+            // Category headers: { g, col, colspan, row:3 }
+            const HEADERS = [
+                { g:'lang',    col:1,  colspan:1, label:'Languages',       icon:'🌐' },
+                { g:'llm',     col:3,  colspan:3, label:'LLMs & GenAI',    icon:'🧠' },
+                { g:'ai',      col:6,  colspan:2, label:'AI / ML',         icon:'🤖' },
+                { g:'backend', col:9,  colspan:3, label:'Backend & Tools', icon:'⚙️' },
+                { g:'db',      col:13, colspan:2, label:'Databases',       icon:'🗄️' },
+                { g:'data',    col:15, colspan:1, label:'Data & Analytics',icon:'📊' },
+            ];
+
+            const board = document.getElementById('ptBoard');
+            if (!board) return;
+
+            // Build CSS grid: 15 cols
+            board.style.display = 'grid';
+            board.style.gridTemplateColumns = 'repeat(15, 1fr)';
+            board.style.gridTemplateRows    = 'auto';
+            board.style.gap = '4px';
+
+            // Featured card update
+            const ftImg   = document.getElementById('ptfImg');
+            const ftEmoji = document.getElementById('ptfEmoji');
+            const ftSym   = document.getElementById('ptfSym');
+            const ftName  = document.getElementById('ptfName');
+            const ftCat   = document.getElementById('ptfCat');
+            const featured= document.getElementById('ptFeatured');
+            let pinned = null;
+
+            function updateFt(el) {
+                const c = C[el.g];
+                featured.style.setProperty('--fc', c);
+                featured.style.borderColor = c + '88';
+                featured.style.boxShadow   = '0 0 28px ' + c + '44';
+                ftSym.style.color  = c;
+                ftCat.style.color  = c;
+                ftSym.textContent  = el.sym;
+                ftName.textContent = el.name;
+                ftCat.textContent  = LABELS[el.g];
+                if (el.logo) {
+                    ftImg.src = el.logo;
+                    ftImg.style.display   = 'block';
+                    ftEmoji.style.display = 'none';
+                } else {
+                    ftImg.style.display   = 'none';
+                    ftEmoji.style.display = 'block';
+                    ftEmoji.textContent   = el.emoji || '⚙️';
+                }
+            }
+
+            // Set default Python
+            updateFt(ELEMENTS[0]);
+
+            // ── Render header cells ──
+            HEADERS.forEach(h => {
+                const hdr = document.createElement('div');
+                hdr.className = 'pt-hdr-cell';
+                hdr.style.gridColumn = `${h.col} / span ${h.colspan}`;
+                hdr.style.gridRow    = '1';
+                hdr.style.color      = C[h.g];
+                hdr.innerHTML = `<span class="pt-hc-icon">${h.icon}</span><span class="pt-hc-label">${h.label}</span>`;
+                board.appendChild(hdr);
+            });
+
+            // ── Render element cells ──
+            ELEMENTS.forEach((el, idx) => {
+                const cell = document.createElement('div');
+                cell.className = 'pt-cell' + (el.hero ? ' pt-cell-hero' : '');
+                cell.style.setProperty('--gc', C[el.g]);
+                cell.style.gridColumn = `${el.col}` + (el.colspan ? ` / span ${el.colspan}` : '');
+                cell.style.gridRow    = `${el.row}`  + (el.rowspan ? ` / span ${el.rowspan}` : '');
+                cell.style.animationDelay = (idx * 0.025) + 's';
+
+                let media = el.logo
+                    ? `<img class="pt-cell-img" src="${el.logo}" alt="${el.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="pt-cell-emoji" style="display:none">⚙️</span>`
+                    : `<span class="pt-cell-emoji">${el.emoji||'⚙️'}</span>`;
+
+                cell.innerHTML =
+                    `<span class="pt-cell-n">${el.n}</span>` +
+                    media +
+                    `<span class="pt-cell-name">${el.name}</span>`;
+
+                cell.addEventListener('mouseenter', () => { if (!pinned) updateFt(el); });
+                cell.addEventListener('click', () => {
+                    if (pinned === cell) {
+                        pinned = null;
+                        cell.classList.remove('pt-pinned');
+                    } else {
+                        if (pinned) pinned.classList.remove('pt-pinned');
+                        pinned = cell;
+                        cell.classList.add('pt-pinned');
+                        updateFt(el);
+                    }
+                });
+
+                board.appendChild(cell);
+            });
+
+            // Legend filter
+            document.querySelectorAll('.ptl-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const g = this.dataset.g;
+                    const already = this.classList.contains('ptl-on');
+                    document.querySelectorAll('.ptl-item').forEach(i => i.classList.remove('ptl-on'));
+                    board.querySelectorAll('.pt-cell').forEach(c => c.classList.remove('pt-dim'));
+                    if (!already) {
+                        this.classList.add('ptl-on');
+                        board.querySelectorAll('.pt-cell').forEach(c => {
+                            if (c.style.getPropertyValue('--gc') !== C[g]) c.classList.add('pt-dim');
+                        });
+                    }
+                });
+            });
+
+            // Entrance
+            const obs = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    board.querySelectorAll('.pt-cell').forEach((el, i) => {
+                        setTimeout(() => el.classList.add('pt-visible'), 20 + i * 25);
+                    });
+                    obs.disconnect();
+                }
+            }, { threshold: 0.05 });
+            obs.observe(board);
+        })();
+
+        // ── Contact Modal ──
+        const modal        = document.getElementById("contactModal");
+        const contactBtn   = document.getElementById("contactBtn");
+        const contactClose = document.getElementById("closeContactModal");
+
+        contactBtn.onclick   = () => { modal.style.display = "flex"; };
+        contactClose.onclick = () => { modal.style.display = "none"; };
+
+        window.onclick = function(event) {
+            if (event.target === modal)        modal.style.display = "none";
+            if (event.target === galleryModal) galleryModal.style.display = "none";
+        };
+
+        // ── Char counter ──
+        const msgBox    = document.getElementById('cm_message');
+        const charCount = document.getElementById('cmCharCount');
+        if (msgBox) {
+            msgBox.addEventListener('input', () => {
+                const len = msgBox.value.length;
+                charCount.textContent = len + ' / 500';
+                if (len > 450) charCount.style.color = '#ff6b6b';
+                else           charCount.style.color = '';
+            });
+        }
+
+        function resetContactForm() {
+            document.getElementById('cmSuccess').style.display = 'none';
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('contactForm').reset();
+            charCount.textContent = '0 / 500';
+        }
+
+        function showError(msg) {
+            const banner = document.getElementById('cmError');
+            document.getElementById('cmErrorText').textContent = msg;
+            banner.style.display = 'flex';
+            setTimeout(() => banner.style.display = 'none', 5000);
+        }
+
+        function setLoading(on) {
+            const btn     = document.getElementById('cmSubmitBtn');
+            const btnText = btn.querySelector('.cm-btn-text');
+            const btnLoad = btn.querySelector('.cm-btn-loading');
+            btn.disabled      = on;
+            btnText.style.display = on ? 'none'  : 'inline-flex';
+            btnLoad.style.display = on ? 'inline-flex' : 'none';
+        }
+
+        // ── Primary: EmailJS ──
+        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // ← replace after EmailJS setup
+
+        async function sendViaEmailJS(formData) {
+            return emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                from_name:    formData.name,
+                from_email:   formData.email,
+                phone:        formData.phone || 'Not provided',
+                subject:      formData.subject,
+                message:      formData.message,
+                to_email:     "vedantkasbekar15@gmail.com"
+            });
+        }
+
+        // ── Fallback: Flask SMTP ──
+        async function sendViaFlask(formData) {
+            const res = await fetch('/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const data = await res.json();
+            if (data.status !== 'success') throw new Error(data.message || 'Flask send failed');
+        }
+
+        async function handleForm(e) {
+            e.preventDefault();
+            setLoading(true);
+            document.getElementById('cmError').style.display = 'none';
+
+            const formData = {
+                name:    document.getElementById('cm_name').value.trim(),
+                email:   document.getElementById('cm_email').value.trim(),
+                phone:   document.getElementById('cm_phone').value.trim(),
+                subject: document.getElementById('cm_subject').value.trim(),
+                message: document.getElementById('cm_message').value.trim()
+            };
+
+            let sent = false;
+
+            // Try EmailJS first
+            try {
+                await sendViaEmailJS(formData);
+                sent = true;
+            } catch (err) {
+                console.warn('EmailJS failed, trying Flask fallback:', err);
+            }
+
+            // Fallback to Flask
+            if (!sent) {
+                try {
+                    await sendViaFlask(formData);
+                    sent = true;
+                } catch (err) {
+                    console.error('Flask fallback also failed:', err);
+                }
+            }
+
+            setLoading(false);
+
+            if (sent) {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('cmSuccess').style.display   = 'flex';
+            } else {
+                showError('Could not send message. Please email me directly at vedantkasbekar15@gmail.com');
+            }
+        }
+
+        // ── Theme Toggle ──
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon   = themeToggle.querySelector('i');
+
+        function applyTheme(mode) {
+            if (mode === 'light') {
+                document.body.classList.add('light-mode');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                document.body.classList.remove('light-mode');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        // Load saved preference
+        applyTheme(localStorage.getItem('theme') || 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light-mode');
+            const next = isLight ? 'dark' : 'light';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+    </script>
+</body>
+</html>

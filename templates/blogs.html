@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs & Conferences | Vedant Kasbekar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='blogs.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+    <div class="doodle-layer">
+        <i class="fa-solid fa-pen-nib floating-icon"    style="top:8%;left:6%;animation-duration:18s"></i>
+        <i class="fa-solid fa-book-open floating-icon"  style="top:20%;right:12%;animation-duration:24s;animation-delay:3s"></i>
+        <i class="fa-solid fa-lightbulb floating-icon"  style="top:55%;left:4%;animation-duration:20s;animation-delay:6s"></i>
+        <i class="fa-solid fa-microphone floating-icon" style="bottom:15%;right:8%;animation-duration:22s"></i>
+        <i class="fa-solid fa-globe floating-icon"      style="top:12%;left:48%;animation-duration:28s;animation-delay:2s"></i>
+        <i class="fa-solid fa-brain floating-icon"      style="bottom:30%;left:25%;animation-duration:16s;animation-delay:4s"></i>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+
+        <!-- NAV -->
+        <nav id="mainNav">
+            <div class="nav-logo">
+                <span class="glitch" data-text="Vedant Kasbekar">Vedant Kasbekar</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#blogs" class="active-nav">Blogs</a></li>
+                <li><a href="#conferences">Conferences</a></li>
+                <li><button id="contactBtn" class="cta-button">Contact Me</button></li>
+                <li><button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode"><i class="fa-solid fa-moon"></i></button></li>
+            </ul>
+        </nav>
+
+        <!-- PAGE HERO -->
+        <header class="blog-hero">
+            <div class="blog-hero-badge">
+                <i class="fa-solid fa-pen-nib"></i> Writing & Learning
+            </div>
+            <h1 class="blog-hero-title">Blogs <span class="blog-amp">&</span> Conferences</h1>
+            <p class="blog-hero-sub">Documenting the journey — what I learn, build, and experience.</p>
+            <div class="blog-hero-stats">
+                <div class="bh-stat"><span class="bh-num" id="statBlogs">0</span><span class="bh-label">Articles</span></div>
+                <div class="bh-divider"></div>
+                <div class="bh-stat"><span class="bh-num" id="statConfs">0</span><span class="bh-label">Conferences</span></div>
+                <div class="bh-divider"></div>
+                <div class="bh-stat"><span class="bh-num" id="statTopics">0</span><span class="bh-label">Topics</span></div>
+            </div>
+        </header>
+
+        <main>
+
+            <!-- ══ BLOGS SECTION ══ -->
+            <section id="blogs" class="content-section">
+                <h2><span class="hash">//</span> Blog_Posts</h2>
+
+                <!-- Filter tabs (built dynamically) -->
+                <div class="bl-filters" id="blogFilters">
+                    <button class="bl-filter active" data-filter="all">All</button>
+                </div>
+
+                <!-- Blog cards render here -->
+                <div class="bl-grid" id="blogGrid">
+                    <div class="bl-empty" id="blogEmpty">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p>No posts yet.</p>
+                        <span>Add entries to the <code>BLOGS</code> array in <code>blogs.html</code></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ══ CONFERENCES SECTION ══ -->
+            <section id="conferences" class="content-section">
+                <h2><span class="hash">//</span> Conferences_Attended</h2>
+
+                <!-- Conference cards render here -->
+                <div class="conf-list" id="confList">
+                    <div class="bl-empty" id="confEmpty">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>No conferences yet.</p>
+                        <span>Add entries to the <code>CONFERENCES</code> array in <code>blogs.html</code></span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>Vedant Kasbekar | AI Developer &mdash; <a href="/" style="color:var(--neon-blue)">Back to Portfolio</a></p>
+        </footer>
+    </div>
+
+    <!-- Blog Detail Modal -->
+    <div id="blogDetailModal" class="modal bl-modal">
+        <div class="bl-modal-content bl-detail-content">
+            <div class="bl-modal-header">
+                <h3 id="detailTitle">Post Title</h3>
+                <span class="close-modal" id="closeDetail">&times;</span>
+            </div>
+            <div class="bl-detail-body" id="detailBody"></div>
+        </div>
+    </div>
+
+    <!-- Contact modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content contact-modal-redesign">
+            <button class="close-modal" onclick="document.getElementById('contactModal').style.display='none'" aria-label="Close">&times;</button>
+            <div class="cm-left">
+                <div class="cm-left-badge"><i class="fa-solid fa-satellite-dish"></i> Open to Work</div>
+                <h3 class="cm-title">Let's Build<br>Something <span class="cm-accent">Together</span></h3>
+                <p class="cm-sub">Have a project idea, job opportunity, or just want to connect? I respond within 24 hours.</p>
+                <div class="cm-contact-info">
+                    <div class="cm-info-row"><i class="fa-solid fa-envelope"></i> vedantkasbekar15@gmail.com</div>
+                    <div class="cm-info-row"><i class="fa-solid fa-location-dot"></i> Chhatrapati Sambhajinagar, India</div>
+                </div>
+                <div class="cm-socials">
+                    <a href="https://github.com/vedantkasbekar" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/vedant-kasbekar" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:vedantkasbekar15@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="cm-right">
+                <div class="cm-form-header">
+                    <span class="cm-form-title">Send a Message</span>
+                    <span class="cm-status-dot"></span>
+                </div>
+                <div class="cm-success" id="cmSuccess">
+                    <div class="cm-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h4>Message Sent!</h4>
+                    <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+                    <button class="cm-send-another" onclick="resetBlogContactForm()">Send Another</button>
+                </div>
+                <div class="cm-error-banner" id="cmError" style="display:none">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="cmErrorText">Something went wrong. Please try again.</span>
+                </div>
+                <form id="contactForm" onsubmit="handleBlogForm(event)" autocomplete="off">
+                    <div class="cm-form-row">
+                        <div class="cm-field">
+                            <label>Your Name <span class="req">*</span></label>
+                            <input type="text" name="name" id="bcm_name" required placeholder="Your name">
+                        </div>
+                        <div class="cm-field">
+                            <label>Your Email <span class="req">*</span></label>
+                            <input type="email" name="email" id="bcm_email" required placeholder="you@email.com">
+                        </div>
+                    </div>
+                    <div class="cm-field">
+                        <label>Subject <span class="req">*</span></label>
+                        <input type="text" name="subject" id="bcm_subject" required placeholder="Project idea / Collaboration">
+                    </div>
+                    <div class="cm-field">
+                        <label>Message <span class="req">*</span></label>
+                        <textarea name="message" id="bcm_message" required placeholder="Tell me what you have in mind..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="cm-submit-btn" id="bcmSubmitBtn">
+                        <span class="cm-btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+                        <span class="cm-btn-loading" style="display:none"><i class="fa-solid fa-spinner fa-spin"></i> Sending...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ GALLERY LIGHTBOX ══ -->
+    <div id="confGalleryModal" class="conf-gallery-modal">
+        <div class="conf-gallery-box">
+            <div class="conf-gallery-box-header">
+                <span id="confGalleryTitle" class="conf-gallery-box-title"></span>
+                <div class="conf-gallery-box-right">
+                    <span id="confGalleryCounter" class="conf-gallery-counter"></span>
+                    <span class="close-modal" id="closeConfGallery">&times;</span>
+                </div>
+            </div>
+            <div class="conf-gallery-main">
+                <button class="conf-gal-nav prev" id="confGalPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="conf-gallery-img-wrap">
+                    <img id="confGalleryMainImg" src="" alt="">
+                </div>
+                <button class="conf-gal-nav next" id="confGalNext"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="conf-gallery-thumbs" id="confGalleryThumbs"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="{{ url_for('static', filename='blogs_data.js') }}"></script>
+    <script>
+        particlesJS.load('particles-js', "/static/particles.json");
+
+        // ── Sticky nav ──
+        const mainNav = document.getElementById('mainNav');
+        const navName = document.getElementById('navScrolledName');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                mainNav.classList.add('nav-scrolled');
+                navName.classList.add('visible');
+            } else {
+                mainNav.classList.remove('nav-scrolled');
+                navName.classList.remove('visible');
+            }
+        });
+
+        // ── Render ──────────────────────────────
+
+        function formatDate(d) {
+            if (!d) return '';
+            return new Date(d).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+        }
+
+        let activeFilter = 'all';
+
+        function renderBlogs() {
+            const grid      = document.getElementById('blogGrid');
+            const empty     = document.getElementById('blogEmpty');
+            const filtersEl = document.getElementById('blogFilters');
+
+            // Build filter buttons from unique tags
+            const tags = [...new Set(BLOGS.map(b => b.tag).filter(Boolean))];
+            filtersEl.innerHTML = '<button class="bl-filter ' + (activeFilter==='all'?'active':'') + '" data-filter="all">All</button>';
+            tags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'bl-filter' + (activeFilter===tag?' active':'');
+                btn.dataset.filter = tag;
+                btn.textContent = tag;
+                filtersEl.appendChild(btn);
+            });
+            filtersEl.querySelectorAll('.bl-filter').forEach(btn => {
+                btn.onclick = () => { activeFilter = btn.dataset.filter; renderBlogs(); };
+            });
+
+            const filtered = activeFilter === 'all' ? BLOGS : BLOGS.filter(b => b.tag === activeFilter);
+            // Remove old rendered items (keep empty placeholder)
+            grid.querySelectorAll('.bl-card-featured, .bl-article-row').forEach(c => c.remove());
+
+            if (filtered.length === 0) {
+                empty.style.display = 'flex';
+            } else {
+                empty.style.display = 'none';
+
+                filtered.forEach((post, i) => {
+                    const idx = BLOGS.indexOf(post);
+
+                    if (i === 0) {
+                        // ── FEATURED post ──
+                        const featured = document.createElement('div');
+                        featured.className = 'bl-card-featured';
+                        featured.style.animationDelay = '0s';
+                        featured.innerHTML = `
+                            <div class="bl-featured-eyebrow">
+                                <i class="fa-solid fa-pen-nib"></i> Featured Post
+                            </div>
+                            <h2 class="bl-featured-title" onclick="openDetail(${idx})">${post.title}</h2>
+                            <p class="bl-featured-excerpt">${post.summary}</p>
+                            <div class="bl-featured-meta">
+                                ${post.tag      ? `<span class="bl-featured-tag">${post.tag}</span>` : ''}
+                                <span class="bl-featured-dot"></span>
+                                ${post.date     ? `<span class="bl-featured-date"><i class="fa-regular fa-calendar"></i> ${formatDate(post.date)}</span>` : ''}
+                                <span class="bl-featured-dot"></span>
+                                ${post.readTime ? `<span class="bl-featured-read"><i class="fa-regular fa-clock"></i> ${post.readTime} min read</span>` : ''}
+                            </div>
+                            <div class="bl-featured-actions">
+                                ${post.content ? `<button class="bl-featured-cta" onclick="openDetail(${idx})"><i class="fa-solid fa-book-open"></i> Read Article</button>` : ''}
+                                ${post.pdf     ? `<a href="${post.pdf}" download class="bl-row-pdf" style="opacity:1"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>` : ''}
+                                ${post.link    ? `<a href="${post.link}" target="_blank" class="bl-featured-cta"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Full</a>` : ''}
+                            </div>`;
+                        grid.appendChild(featured);
+
+                    } else {
+                        // ── REGULAR article row ──
+                        const row = document.createElement('div');
+                        row.className = 'bl-article-row';
+                        row.style.animationDelay = (i * 0.06) + 's';
+                        if (post.content) row.onclick = () => openDetail(idx);
+                        row.innerHTML = `
+                            <div class="bl-row-index">0${i}</div>
+                            <div class="bl-row-content">
+                                <div class="bl-row-meta">
+                                    ${post.tag  ? `<span class="bl-row-tag">${post.tag}</span>` : ''}
+                                    ${post.date ? `<span class="bl-row-date"><i class="fa-regular fa-calendar"></i> ${formatDate(post.date)}</span>` : ''}
+                                    ${post.readTime ? `<span class="bl-row-read"><i class="fa-regular fa-clock"></i> ${post.readTime} min read</span>` : ''}
+                                </div>
+                                <div class="bl-row-title">${post.title}</div>
+                                <p class="bl-row-excerpt">${post.summary}</p>
+                                <div class="bl-row-footer">
+                                    ${post.content ? `<button class="bl-row-read-btn" onclick="event.stopPropagation();openDetail(${idx})"><i class="fa-solid fa-arrow-right"></i> Read Article</button>` : ''}
+                                    ${post.pdf     ? `<a href="${post.pdf}" download class="bl-row-pdf" onclick="event.stopPropagation()"><i class="fa-solid fa-file-pdf"></i> PDF</a>` : ''}
+                                </div>
+                            </div>`;
+                        grid.appendChild(row);
+                    }
+                });
+            }
+            updateStats();
+        }
+
+        function openDetail(idx) {
+            const post = BLOGS[idx];
+            if (!post) return;
+
+            // Parse content into structured sections
+            function parseContent(raw) {
+                if (!raw) return '';
+                const lines = raw.split('\n');
+                let html = '';
+                let inPara = false;
+
+                lines.forEach(line => {
+                    const trimmed = line.trim();
+                    if (!trimmed) {
+                        if (inPara) { html += '</p>'; inPara = false; }
+                        return;
+                    }
+                    // Numbered section heading (e.g. "1. My First Shock:")
+                    if (/^\d+\.\s/.test(trimmed)) {
+                        if (inPara) { html += '</p>'; inPara = false; }
+                        html += `<div class="bl-section-heading">${trimmed}</div>`;
+                    }
+                    // Arrow bullet
+                    else if (trimmed.startsWith('→')) {
+                        if (inPara) { html += '</p>'; inPara = false; }
+                        html += `<div class="bl-arrow-line"><span class="bl-arrow-icon">→</span><span>${trimmed.slice(1).trim()}</span></div>`;
+                    }
+                    // Normal paragraph text
+                    else {
+                        if (!inPara) { html += '<p>'; inPara = true; }
+                        else html += ' ';
+                        html += trimmed;
+                    }
+                });
+                if (inPara) html += '</p>';
+                return html;
+            }
+
+            const modalContent = document.querySelector('#blogDetailModal .bl-modal-content');
+            modalContent.innerHTML = `
+                <div class="bl-reader-progress-wrap">
+                    <div class="bl-reader-progress-bar" id="readerProgress"></div>
+                </div>
+                <div class="bl-reader-header">
+                    <div class="bl-reader-tag-row">
+                        ${post.tag      ? `<span class="bl-reader-tag">${post.tag}</span>` : ''}
+                        ${post.date     ? `<span class="bl-reader-date"><i class="fa-regular fa-calendar"></i> ${formatDate(post.date)}</span>` : ''}
+                        ${post.readTime ? `<span class="bl-reader-readtime"><i class="fa-regular fa-clock"></i> ${post.readTime} min read</span>` : ''}
+                    </div>
+                    <h2 class="bl-reader-title">${post.title}</h2>
+                </div>
+                ${post.cover ? `<img src="${post.cover}" style="width:100%;max-height:280px;object-fit:cover;display:block;" alt="">` : ''}
+                <div class="bl-reader-body" id="readerBody">
+                    <article class="bl-article">
+                        ${parseContent(post.content)}
+                    </article>
+                    ${post.photos && post.photos.length ? `
+                    <div class="conf-gallery" style="margin-top:24px;border-top:1px solid #1a2540;padding-top:18px">
+                        <div class="conf-gallery-label"><i class="fa-solid fa-images"></i> Photos <span class="conf-photo-count">${post.photos.length}</span></div>
+                        <div class="conf-gallery-strip">
+                            ${post.photos.map((src, pi) => `
+                                <div class="conf-gallery-thumb" onclick="openBlogGallery(${idx}, ${pi})">
+                                    <img src="${src}" alt="Photo ${pi+1}" onerror="this.parentElement.classList.add('conf-thumb-missing');this.style.display='none'">
+                                    <div class="conf-thumb-overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>`).join('')}
+                        </div>
+                    </div>` : ''}
+                </div>
+                <div class="bl-reader-footer">
+                    ${post.link ? `<a href="${post.link}" target="_blank" class="conf-linkedin-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Read on LinkedIn</a>` : ''}
+                    ${post.pdf  ? `<a href="${post.pdf}" download class="bl-pdf-btn"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>` : ''}
+                    <button onclick="document.getElementById('blogDetailModal').style.display='none'" style="margin-left:auto;background:transparent;border:1px solid #2a3347;color:var(--text-muted);padding:6px 16px;border-radius:5px;font-family:var(--font-code);font-size:0.72rem;cursor:pointer;">Close</button>
+                </div>`;
+
+            // Reading progress bar
+            setTimeout(() => {
+                const body = document.getElementById('readerBody');
+                const bar  = document.getElementById('readerProgress');
+                if (body && bar) {
+                    body.addEventListener('scroll', () => {
+                        const pct = (body.scrollTop / (body.scrollHeight - body.clientHeight)) * 100;
+                        bar.style.width = Math.min(pct, 100) + '%';
+                    });
+                }
+            }, 100);
+
+            document.getElementById('blogDetailModal').style.display = 'flex';
+        }
+
+        function renderConfs() {
+            const list  = document.getElementById('confList');
+            const empty = document.getElementById('confEmpty');
+            list.querySelectorAll('.conf-card').forEach(c => c.remove());
+
+            if (CONFERENCES.length === 0) {
+                empty.style.display = 'flex';
+            } else {
+                empty.style.display = 'none';
+                CONFERENCES.forEach((conf, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'conf-card';
+                    card.style.animationDelay = (i * 0.07) + 's';
+                    card.innerHTML = `
+                        <div class="conf-card-left">
+                            <div class="conf-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="conf-vline"></div>
+                        </div>
+                        <div class="conf-card-body">
+                            <div class="conf-card-top">
+                                <div>
+                                    <h3 class="conf-name">${conf.name}</h3>
+                                    <div class="conf-meta">
+                                        ${conf.date ? `<span><i class="fa-regular fa-calendar"></i> ${formatDate(conf.date)}${conf.dateEnd ? ' – ' + formatDate(conf.dateEnd) : ''}</span>` : ''}
+                                        ${conf.location ? `<span><i class="fa-solid fa-map-marker-alt"></i> ${conf.location}</span>` : ''}
+                                        ${conf.role    ? `<span class="conf-role-tag">${conf.role}</span>` : ''}
+                                        ${conf.topic   ? `<span class="conf-topic-tag">${conf.topic}</span>` : ''}
+                                    </div>
+                                </div>
+                                ${conf.cert ? `<img src="${conf.cert}" class="conf-cert-thumb" alt="certificate">` : ''}
+                            </div>
+                            <div class="conf-learnings">${conf.learnings.replace(/\n/g,'<br>').replace(/→/g,'<span class="conf-arrow">→</span>')}</div>
+                            ${conf.photos && conf.photos.length ? `
+                            <div class="conf-gallery">
+                                <div class="conf-gallery-label">
+                                    <i class="fa-solid fa-images"></i> Photos
+                                    <span class="conf-photo-count">${conf.photos.length}</span>
+                                </div>
+                                <div class="conf-gallery-strip">
+                                    ${conf.photos.map((src, pi) => `
+                                        <div class="conf-gallery-thumb" onclick="openConfGallery(${i}, ${pi})">
+                                            <img src="${src}" alt="Photo ${pi+1}" onerror="this.parentElement.classList.add('conf-thumb-missing');this.style.display='none'">
+                                            <div class="conf-thumb-overlay"><i class="fa-solid fa-expand"></i></div>
+                                        </div>`).join('')}
+                                </div>
+                            </div>` : ''}
+                            ${conf.linkedinUrl ? `
+                            <div class="conf-linkedin-fwd">
+                                <span class="conf-fwd-text"><i class="fa-brands fa-linkedin"></i> Read my full experience on LinkedIn</span>
+                                <div class="conf-linkedin-links">
+                                    <a href="${conf.linkedinUrl}" target="_blank" class="conf-linkedin-btn">
+                                        <i class="fa-brands fa-linkedin"></i> ${conf.linkedinUrl2 ? 'Day 1 Post' : 'View LinkedIn Post'}
+                                    </a>
+                                    ${conf.linkedinUrl2 ? `<a href="${conf.linkedinUrl2}" target="_blank" class="conf-linkedin-btn">
+                                        <i class="fa-brands fa-linkedin"></i> Day 2 Post
+                                    </a>` : ''}
+                                </div>
+                                <span class="conf-fwd-url">${conf.linkedinUrl}</span>
+                            </div>` : ''}
+                        </div>`;
+                    list.appendChild(card);
+                });
+            }
+            updateStats();
+        }
+
+        function updateStats() {
+            const topics = [...new Set([...BLOGS.map(b=>b.tag), ...CONFERENCES.map(c=>c.topic)].filter(Boolean))];
+            animCount('statBlogs',  BLOGS.length);
+            animCount('statConfs',  CONFERENCES.length);
+            animCount('statTopics', topics.length);
+        }
+
+        function animCount(id, target) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            let cur = 0;
+            const step = Math.max(1, Math.ceil(target / 30));
+            const t = setInterval(() => {
+                cur = Math.min(cur + step, target);
+                el.textContent = cur;
+                if (cur >= target) clearInterval(t);
+            }, 40);
+        }
+
+        // ── Conference Gallery Lightbox ──
+        let galPhotos = [], galIdx = 0, galTitle = '';
+
+        function openConfGallery(confIdx, photoIdx) {
+            const conf = CONFERENCES[confIdx];
+            if (!conf || !conf.photos) return;
+            galPhotos = conf.photos;
+            galTitle  = conf.name;
+            galIdx    = photoIdx;
+            document.getElementById('confGalleryTitle').textContent = galTitle;
+            document.getElementById('confGalleryModal').style.display = 'flex';
+            buildGalThumbs();
+            showGalPhoto(galIdx);
+        }
+
+        function openBlogGallery(blogIdx, photoIdx) {
+            const post = BLOGS[blogIdx];
+            if (!post || !post.photos) return;
+            galPhotos = post.photos;
+            galTitle  = post.title;
+            galIdx    = photoIdx;
+            document.getElementById('confGalleryTitle').textContent = galTitle;
+            document.getElementById('confGalleryModal').style.display = 'flex';
+            buildGalThumbs();
+            showGalPhoto(galIdx);
+        }
+
+        function buildGalThumbs() {
+            const strip = document.getElementById('confGalleryThumbs');
+            strip.innerHTML = '';
+            galPhotos.forEach((src, i) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Photo ' + (i+1);
+                img.className = 'conf-gal-thumb' + (i === galIdx ? ' active' : '');
+                img.onclick = (e) => { e.stopPropagation(); showGalPhoto(i); };
+                strip.appendChild(img);
+            });
+        }
+
+        function showGalPhoto(idx) {
+            galIdx = idx;
+            document.getElementById('confGalleryMainImg').src = galPhotos[idx];
+            document.getElementById('confGalleryCounter').textContent = (idx+1) + ' / ' + galPhotos.length;
+            document.querySelectorAll('.conf-gal-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+            document.getElementById('confGalPrev').style.opacity = idx === 0 ? '0.3' : '1';
+            document.getElementById('confGalNext').style.opacity = idx === galPhotos.length-1 ? '0.3' : '1';
+        }
+
+        document.getElementById('confGalPrev').onclick = (e) => { e.stopPropagation(); if (galIdx > 0) showGalPhoto(galIdx-1); };
+        document.getElementById('confGalNext').onclick = (e) => { e.stopPropagation(); if (galIdx < galPhotos.length-1) showGalPhoto(galIdx+1); };
+        document.getElementById('closeConfGallery').onclick = (e) => { e.stopPropagation(); document.getElementById('confGalleryModal').style.display='none'; };
+        document.getElementById('confGalleryModal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('confGalleryModal').style.display !== 'flex') return;
+            if (e.key === 'ArrowLeft')  { if (galIdx > 0) showGalPhoto(galIdx-1); }
+            if (e.key === 'ArrowRight') { if (galIdx < galPhotos.length-1) showGalPhoto(galIdx+1); }
+            if (e.key === 'Escape')     document.getElementById('confGalleryModal').style.display = 'none';
+        });
+
+        // ── Close modals ──
+        window.onclick = e => {
+            if (e.target === document.getElementById('blogDetailModal')) document.getElementById('blogDetailModal').style.display = 'none';
+            if (e.target === document.getElementById('contactModal'))    document.getElementById('contactModal').style.display = 'none';
+        };
+
+        // ── Contact Modal (blogs page) ──
+        emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+
+        document.getElementById('contactBtn').onclick = () => {
+            document.getElementById('contactModal').style.display = 'flex';
+        };
+
+        function resetBlogContactForm() {
+            document.getElementById('cmSuccess').style.display = 'none';
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('contactForm').reset();
+        }
+
+        async function handleBlogForm(e) {
+            e.preventDefault();
+            const btn     = document.getElementById('bcmSubmitBtn');
+            const btnText = btn.querySelector('.cm-btn-text');
+            const btnLoad = btn.querySelector('.cm-btn-loading');
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoad.style.display = 'inline-flex';
+            document.getElementById('cmError').style.display = 'none';
+
+            const formData = {
+                name:    document.getElementById('bcm_name').value.trim(),
+                email:   document.getElementById('bcm_email').value.trim(),
+                subject: document.getElementById('bcm_subject').value.trim(),
+                message: document.getElementById('bcm_message').value.trim()
+            };
+
+            let sent = false;
+            try {
+                await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                    from_name:  formData.name,
+                    from_email: formData.email,
+                    subject:    formData.subject,
+                    message:    formData.message,
+                    to_email:   "vedantkasbekar15@gmail.com"
+                });
+                sent = true;
+            } catch (err) {
+                console.warn('EmailJS failed, trying Flask:', err);
+                try {
+                    const res = await fetch('/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                    const data = await res.json();
+                    if (data.status === 'success') sent = true;
+                } catch (e) { console.error('Flask also failed:', e); }
+            }
+
+            btn.disabled = false;
+            btnText.style.display = 'inline-flex';
+            btnLoad.style.display = 'none';
+
+            if (sent) {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('cmSuccess').style.display   = 'flex';
+            } else {
+                const banner = document.getElementById('cmError');
+                document.getElementById('cmErrorText').textContent = 'Could not send. Email me at vedantkasbekar15@gmail.com';
+                banner.style.display = 'flex';
+            }
+        }
+
+        function handleForm(e) { handleBlogForm(e); }
+
+        // ── Theme Toggle ──
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon   = themeToggle.querySelector('i');
+
+        function applyTheme(mode) {
+            if (mode === 'light') {
+                document.body.classList.add('light-mode');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                document.body.classList.remove('light-mode');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        applyTheme(localStorage.getItem('theme') || 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.classList.contains('light-mode');
+            const next = isLight ? 'dark' : 'light';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        });
+
+        // Init
+        renderBlogs();
+        renderConfs();
+    </script>
+</body>
+</html>
