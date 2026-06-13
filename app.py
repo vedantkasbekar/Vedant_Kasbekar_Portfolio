@@ -25,11 +25,11 @@ portfolio_data = {
     "profile_summary": "AI Developer with 1 year of experience building LLM-powered SaaS products, NLP pipelines, and RAG systems. Skilled in Python, LangChain, and OpenAI APIs. Passionate about applying GenAI to real-world business problems.",
     "skills": {
         "Languages": ["Python", "SQL"],
-        "LLMs & GenAI": ["LangChain", "LLM APIs", "Hugging Face", "Ollama", "RAG"],
-        "AI/ML": ["Machine Learning", "NLP", "TensorFlow", "Computer Vision"],
-        "Backend & Tools": ["Flask", "FastAPI", "Streamlit"],
-        "Databases": ["MySQL", "ChromaDB", "FAISS", "PostgreSQL"],
-        "Data & Analytics": ["Power BI", "Pandas", "NumPy"]
+        "LLMs & GenAI": ["LangChain", "LLM APIs", "Hugging Face", "Ollama", "RAG", "Gemini Embeddings", "Prompt Engineering", "Agentic AI"],
+        "AI/ML": ["Machine Learning", "NLP", "spaCy", "TensorFlow", "Computer Vision"],
+        "Backend & Tools": ["Flask", "FastAPI", "Streamlit", "PyPDF2", "gTTS", "deep_translator"],
+        "Databases": ["MySQL", "ChromaDB", "FAISS", "PostgreSQL", "SQLite"],
+        "Data & Analytics": ["Power BI", "Pandas", "NumPy", "Plotly", "Matplotlib"]
     },
     # --- Work Experience (separate from achievements) ---
     "experience": [
@@ -98,25 +98,39 @@ portfolio_data = {
     ],
     "projects": [
         {
-            "title": "Web Guru: Multi-Site Chatbot",
-            "date": "June 2023",
-            "description": "A smart chatbot that aggregates and queries multiple websites via semantic search to answer research questions. Uses Gemini API for Q&A and vector DB for efficient embedding storage and retrieval.",
-            "tech_stack": ["LangChain", "Gemini API", "Vector DB", "Web Scraping", "NLP"],
-            "github_link": "https://github.com/vedantkasbekar/Website-Bot",
-            "type": "AI Agent"
+            "title": "ResearchIQ: AI-Powered Research Assistant",
+            "date": "June 2024",
+            "bullets": [
+                "Scrapes 8+ URLs & parses PDF/DOCX files with instant per-source credibility scoring (domain authority, recency, political bias)",
+                "Dual query modes — RAG pipeline (Gemini Embeddings + NumPy cosine similarity) and full-context Gemini — both with multi-turn chat",
+                "Auto-suggests related articles per response and tracks session analytics (query frequency, topic trends, source usage)",
+                "80+ language translation, text-to-speech audio output, and auto-detecting Plotly visualisations"
+            ],
+            "tech_stack": ["Python", "Streamlit", "Google Gemini 2.5 Flash", "Gemini Embeddings", "LangChain", "NumPy", "PyPDF2", "SQLite", "Plotly", "gTTS", "deep_translator", "RAG"],
+            "github_link": "https://github.com/vedantkasbekar/ResearchIQ",
+            "type": "GenAI · RAG"
         },
         {
-            "title": "Resume Analyzer",
+            "title": "Resumatch: AI-Powered ATS Resume Evaluator",
             "date": "Dec 2024",
-            "description": "An AI-powered resume analyzer that parses resumes, analyses skillsets, and recommends personalized courses and skill enhancements based on job roles.",
-            "tech_stack": ["Python", "NLP", "Streamlit", "NLTK", "MySQL"],
-            "github_link": "#",
-            "type": "Data Analysis"
+            "bullets": [
+                "5-module ATS platform: Job Seeker (resume scoring), Recruiter (resume comparison), AI Resume Builder, NLP offline analysis & Company Research",
+                "Gemini 2.5 Flash generates match scores, missing keyword analysis, AI candidate summaries & personalised improvement tips",
+                "spaCy + pyresparser NLP pipeline for offline skill, education & experience extraction — no API key required",
+                "Admin portal with analytics dashboard, average scores, top matched skills & paginated logs"
+            ],
+            "tech_stack": ["Python", "Flask", "SQLAlchemy", "SQLite", "Gemini API", "spaCy", "NLP", "Chart.js", "JavaScript"],
+            "github_link": "https://github.com/vedantkasbekar/resumatch",
+            "type": "GenAI"
         },
         {
             "title": "BlinkGuard: Sleep Detection Glasses",
             "date": "June 2022",
-            "description": "A drowsiness detection wearable using an IR Eye Blink Sensor with Arduino Pro Mini to monitor real-time eye-closure patterns. Triggers buzzer and vibration alerts on prolonged eye closure.",
+            "bullets": [
+                "Drowsiness detection wearable using an IR Eye Blink Sensor with Arduino Pro Mini",
+                "Monitors real-time eye-closure patterns and triggers buzzer + vibration alerts on prolonged closure",
+                "Compact, low-power design — fully self-contained with no external compute required"
+            ],
             "tech_stack": ["Arduino", "IR Sensor", "IoT", "C++"],
             "github_link": "#",
             "type": "Hardware AI"

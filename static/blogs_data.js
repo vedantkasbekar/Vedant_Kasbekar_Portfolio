@@ -89,96 +89,9 @@ If you're standing where I was at the beginning — with a skill set, a vague id
 // ════════════════════════════════════════
 const CONFERENCES = [
     {
-        name:     "Prompt Engineering Session",
-        date:     "2025-09-15",
-        location: "India",
-        role:     "Speaker",
-        topic:    "Prompt Engineering · AI",
-        learnings: `Got the chance to deliver a short session on Prompt Engineering and honestly it was a great experience.
-
-I kept it practical — no theory slides, just real examples of the same prompt giving wildly different results depending on how it's written.
-
-What I covered:
-
-→ Why "just ask ChatGPT" isn't prompt engineering
-→ Zero-shot vs few-shot vs chain-of-thought — when to use each
-→ How role prompting changes model behaviour completely
-→ System prompts and why they matter more than the user prompt
-→ Common mistakes: vague instructions, no output format, not iterating
-
-The moment I showed a bad prompt vs a well-structured one producing completely different outputs — that's when it clicked for everyone.
-
-If you're building anything with LLMs, spending 2 hours on prompt engineering properly will save you days of debugging.`,
-        cert:     "",
-        photos:   [
-            "/static/images/prompt_session_1.jpg",
-            "/static/images/prompt_session_2.jpg"
-        ],
-        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_promptengineering-artificialintelligence-activity-7389137658607788032-lTFE"
-    },
-    {
-        name:     "API Conference — APIs & AI",
-        date:     "2025-06-01",
-        location: "India",
-        role:     "Attendee",
-        topic:    "APIs · AI",
-        learnings: `Walked in thinking I knew APIs well enough. Walked out with a notepad full of things to rethink.
-
-The day was about how API design is being rebuilt for AI workloads — not just adding an LLM endpoint, but rethinking contracts, versioning, and how data moves at scale.
-
-What stuck:
-
-→ Streaming is non-negotiable. No streaming support = already behind.
-→ Versioning breaks differently when AI apps are downstream — one schema change and the whole chain fails silently.
-→ Rate limiting for LLMs isn't request counts. It's tokens, context windows, and 30-second timeouts.
-→ Pure REST isn't built for async inference. Webhooks and SSE are taking over.
-
-Deals with all of this daily at Eelanos. Glad I went.`,
-        cert:     "",
-        photos:   [
-            "/static/images/conf_api_1.jpg",
-            "/static/images/conf_api_2.jpg",
-            "/static/images/conf_api_3.jpg",
-            "/static/images/conf_api_4.jpg"
-        ],
-        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_apiconference-apis-ai-activity-7376110595101777920-7pEA"
-    },
-    {
-        name:     "DevConf.IN 2026 — Speaker",
-        date:     "2026-02-13",
-        dateEnd:  "2026-02-14",
-        location: "MIT World Peace University, Pune",
-        role:     "Speaker",
-        topic:    "Prompt Engineering 2.0",
-        learnings: `DevConf.IN is Red Hat's annual open source conference in India. The audience knows their stuff — contributors, engineers, actual builders. So I had to bring depth.
-
-My session was Prompt Engineering 2.0 — moving past basic prompting into agent design, structured outputs, and building LLM pipelines that actually hold up in production.
-
-What I covered:
-
-→ Why prompt engineering still matters even with reasoning models
-→ Where chain-of-thought breaks and how to catch it
-→ Structured output prompting for real SaaS applications
-→ Multi-step agent prompts that don't hallucinate mid-chain
-→ Live examples from products I've built at Eelanos
-
-The Q&A ran long — always a good sign. Got some sharp pushback on agent reliability which turned into a great conversation after the session ended.
-
-Speaking in front of 200+ developers at a Red Hat conference was genuinely one of the better experiences I've had.`,
-        cert:     "",
-        photos:   [
-            "/static/images/devconf1.jpg",
-            "/static/images/devconf2.jpg",
-            "/static/images/devconf3.jpg",
-            "/static/images/devconf4.jpg",
-            "/static/images/devconf5.jpg"
-        ],
-        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_devconfin-opensource-techcommunity-activity-7428683592769363968-baBQ"
-    },
-    {
-        name:     "PyConf Hyderabad 2025",
-        date:     "2025-02-15",
-        dateEnd:  "2025-02-16",
+        name:     "PyConf Hyderabad 2026",
+        date:     "2026-03-14",
+        dateEnd:  "2026-03-15",
         location: "Hyderabad, India",
         role:     "Attendee",
         topic:    "Python · AI · ML",
@@ -211,5 +124,92 @@ Would go again.`,
         ],
         linkedinUrl:  "https://www.linkedin.com/posts/vedant-kasbekar_pyconfhyderabad-pyconindia-ai-activity-7440972953825132545-KwaI",
         linkedinUrl2: "https://www.linkedin.com/posts/vedant-kasbekar_pyconfhyderabad-ai-machinelearning-activity-7442419821587226624-SiRX"
+    },
+    {
+        name:     "Speaker at DevConf 2026",
+        date:     "2026-02-13",
+        dateEnd:  "2026-02-14",
+        location: "MIT World Peace University, Pune",
+        role:     "Speaker",
+        topic:    "Prompt Engineering 2.0",
+        learnings: `DevConf.IN is Red Hat's annual open source conference in India. The audience knows their stuff — contributors, engineers, actual builders. So I had to bring depth.
+
+My session was Prompt Engineering 2.0 — moving past basic prompting into agent design, structured outputs, and building LLM pipelines that actually hold up in production.
+
+What I covered:
+
+→ Why prompt engineering still matters even with reasoning models
+→ Where chain-of-thought breaks and how to catch it
+→ Structured output prompting for real SaaS applications
+→ Multi-step agent prompts that don't hallucinate mid-chain
+→ Live examples from products I've built at Eelanos
+
+The Q&A ran long — always a good sign. Got some sharp pushback on agent reliability which turned into a great conversation after the session ended.
+
+Speaking in front of 200+ developers at a Red Hat conference was genuinely one of the better experiences I've had.`,
+        cert:     "",
+        photos:   [
+            "/static/images/devconf1.jpg",
+            "/static/images/devconf2.jpg",
+            "/static/images/devconf3.jpg",
+            "/static/images/devconf4.jpg",
+            "/static/images/devconf5.jpg"
+        ],
+        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_devconfin-opensource-techcommunity-activity-7428683592769363968-baBQ"
+    },
+    {
+        name:     "Prompt Engineering Session",
+        date:     "2025-09-21",
+        location: "India",
+        role:     "Speaker",
+        topic:    "Prompt Engineering · AI",
+        learnings: `Got the chance to deliver a short session on Prompt Engineering and honestly it was a great experience.
+
+I kept it practical — no theory slides, just real examples of the same prompt giving wildly different results depending on how it's written.
+
+What I covered:
+
+→ Why "just ask ChatGPT" isn't prompt engineering
+→ Zero-shot vs few-shot vs chain-of-thought — when to use each
+→ How role prompting changes model behaviour completely
+→ System prompts and why they matter more than the user prompt
+→ Common mistakes: vague instructions, no output format, not iterating
+
+The moment I showed a bad prompt vs a well-structured one producing completely different outputs — that's when it clicked for everyone.
+
+If you're building anything with LLMs, spending 2 hours on prompt engineering properly will save you days of debugging.`,
+        cert:     "",
+        photos:   [
+            "/static/images/prompt_session_1.jpg",
+            "/static/images/prompt_session_2.jpg"
+        ],
+        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_promptengineering-artificialintelligence-activity-7389137658607788032-lTFE"
+    },
+    {
+        name:     "API Conference — APIs & AI",
+        date:     "2025-09-21",
+        location: "India",
+        role:     "Attendee",
+        topic:    "APIs · AI",
+        learnings: `Walked in thinking I knew APIs well enough. Walked out with a notepad full of things to rethink.
+
+The day was about how API design is being rebuilt for AI workloads — not just adding an LLM endpoint, but rethinking contracts, versioning, and how data moves at scale.
+
+What stuck:
+
+→ Streaming is non-negotiable. No streaming support = already behind.
+→ Versioning breaks differently when AI apps are downstream — one schema change and the whole chain fails silently.
+→ Rate limiting for LLMs isn't request counts. It's tokens, context windows, and 30-second timeouts.
+→ Pure REST isn't built for async inference. Webhooks and SSE are taking over.
+
+Deals with all of this daily at Eelanos. Glad I went.`,
+        cert:     "",
+        photos:   [
+            "/static/images/conf_api_1.jpg",
+            "/static/images/conf_api_2.jpg",
+            "/static/images/conf_api_3.jpg",
+            "/static/images/conf_api_4.jpg"
+        ],
+        linkedinUrl: "https://www.linkedin.com/posts/vedant-kasbekar_apiconference-apis-ai-activity-7376110595101777920-7pEA"
     },
 ];

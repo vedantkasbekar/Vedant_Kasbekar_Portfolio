@@ -66,8 +66,8 @@
 
     <div id="particles-js"></div>
 
-    <div class="container">
-        <nav id="mainNav">
+    <nav id="mainNav" class="nav-fullwidth">
+        <div class="nav-inner">
             <div class="nav-logo">
                 <span class="glitch" data-text="Vedant Kasbekar">Vedant Kasbekar</span>
             </div>
@@ -81,8 +81,10 @@
                 <li><button id="contactBtn" class="cta-button">Contact Me</button></li>
                 <li><button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode"><i class="fa-solid fa-moon"></i></button></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
 
+    <div class="container">
         <header class="header-grid header-fullwidth">
             <div class="header-content">
                 <div class="profile-row">
@@ -213,15 +215,25 @@
                 <div class="projects-grid">
                     {% for project in data.projects %}
                     <div class="project-card">
-                        <div class="card-border-top"></div>
+                        <div class="card-glow-border"></div>
                         <div class="project-header">
                             <div class="project-type"><i class="fa-solid fa-microchip"></i> {{ project.type }}</div>
-                            {% if project.github_link != "#" %}
-                            <a href="{{ project.github_link }}" target="_blank" class="git-icon"><i class="fa-brands fa-github"></i></a>
-                            {% endif %}
+                            <div class="project-header-right">
+                                <span class="project-date"><i class="fa-regular fa-calendar"></i> {{ project.date }}</span>
+                                {% if project.github_link != "#" %}
+                                <a href="{{ project.github_link }}" target="_blank" class="git-icon"><i class="fa-brands fa-github"></i></a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <h3>{{ project.title }}</h3>
-                        <p class="project-desc">{{ project.description }}</p>
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <ul class="project-bullets">
+                            {% for bullet in project.bullets %}
+                            <li class="project-bullet-item">
+                                <span class="bullet-dot"></span>
+                                <span>{{ bullet }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
                         <div class="tech-stack">
                             {% for tech in project.tech_stack %}
                                 <span><i class="fa-solid fa-code"></i> {{ tech }}</span>
@@ -245,12 +257,12 @@
                             <span class="speaker-tag">DevConf 2026</span>
                             <span class="speaker-tag">MIT World Peace University</span>
                         </div>
-                        <h3>Prompt Engineering 2.0</h3>
+                        <h3>Speaker at DevConf 2026</h3>
                         <p>Delivered a technical session to <strong>200+ developers and students</strong> covering advanced prompting strategies, chain-of-thought reasoning, and real-world LLM application design.</p>
                         <div class="speaker-stats">
                             <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Attendees</span></div>
                             <div class="stat"><span class="stat-num">2026</span><span class="stat-label">Year</span></div>
-                            <div class="stat"><span class="stat-num">LLMs</span><span class="stat-label">Topic</span></div>
+                            <div class="stat"><span class="stat-num">Prompt Engineering 2.0</span><span class="stat-label">Topic</span></div>
                         </div>
                     </div>
                     <div class="speaker-right">
@@ -631,6 +643,7 @@
                 // ── AI / ML (col 6, rows 4-6) ──
                 { n:8,  sym:'ML',   name:'Machine Learning',g:'ai',     col:6, row:4, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
                 { n:9,  sym:'NLP',  name:'NLP',            g:'ai',      col:7, row:4, emoji:'📝' },
+                { n:11, sym:'spCy', name:'spaCy',          g:'ai',      col:8, row:4, emoji:'🔤' },
                 { n:10, sym:'TL',   name:'TensorFlow',     g:'ai',      col:6, row:5, logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg' },
                 { n:15, sym:'CV',   name:'Computer Vision', g:'ai',      col:6, row:6, emoji:'👁️' },
 

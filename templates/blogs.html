@@ -199,14 +199,11 @@
 
         // ── Sticky nav ──
         const mainNav = document.getElementById('mainNav');
-        const navName = document.getElementById('navScrolledName');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 80) {
                 mainNav.classList.add('nav-scrolled');
-                navName.classList.add('visible');
             } else {
                 mainNav.classList.remove('nav-scrolled');
-                navName.classList.remove('visible');
             }
         });
 
@@ -300,7 +297,6 @@
                     }
                 });
             }
-            updateStats();
         }
 
         function openDetail(idx) {
@@ -455,7 +451,6 @@
                     list.appendChild(card);
                 });
             }
-            updateStats();
         }
 
         function updateStats() {
@@ -640,6 +635,7 @@
         // Init
         renderBlogs();
         renderConfs();
+        updateStats();
     </script>
 </body>
 </html>
